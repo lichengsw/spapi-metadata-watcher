@@ -5,7 +5,8 @@
   "description": "Developer-first website and API prototype for tracking Amazon SP-API metadata updates.",
   "scripts": {
     "dev": "node dev-server.js",
-    "start": "node dev-server.js"
+    "start": "node dev-server.js",
+    "test": "node --test tests/*.test.js"
   },
   "engines": {
     "node": ">=20"
