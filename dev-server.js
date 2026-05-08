@@ -45,47 +45,56 @@ function serveFile(res, filePath) {
   fs.createReadStream(filePath).pipe(res);
 }
 
-const server = http.createServer(async (req, res) => {
-  const parsedUrl = new url.URL(req.url, "http://localhost:3000");
-  const pathname = parsedUrl.pathname;
+function createServer() {
+  return http.createServer(async (req, res) => {
+    const parsedUrl = new url.URL(req.url, "http://localhost:3000");
+    const pathname = parsedUrl.pathname;
 
-  if (routes[pathname]) {
-    req.query = Object.fromEntries(parsedUrl.searchParams.entries());
-    try {
-      await routes[pathname](req, res);
-    } catch (error) {
-      res.statusCode = 500;
-      res.setHeader("Content-Type", "application/json; charset=utf-8");
-      res.end(
-        JSON.stringify(
-          {
-            ok: false,
-            error: "internal_error",
-            message: error.message
-          },
-          null,
-          2
-        )
-      );
+    if (routes[pathname]) {
+      req.query = Object.fromEntries(parsedUrl.searchParams.entries());
+      try {
+        await routes[pathname](req, res);
+      } catch (error) {
+        res.statusCode = 500;
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(
+          JSON.stringify(
+            {
+              ok: false,
+              error: "internal_error",
+              message: error.message
+            },
+            null,
+            2
+          )
+        );
+      }
+      return;
     }
-    return;
-  }
 
-  if (staticMap[pathname]) {
-    serveFile(res, path.join(rootDir, staticMap[pathname]));
-    return;
-  }
+    if (staticMap[pathname]) {
+      serveFile(res, path.join(rootDir, staticMap[pathname]));
+      return;
+    }
 
-  if (pathname.startsWith("/assets/")) {
-    serveFile(res, path.join(rootDir, pathname));
-    return;
-  }
+    if (pathname.startsWith("/assets/")) {
+      serveFile(res, path.join(rootDir, pathname));
+      return;
+    }
 
-  res.statusCode = 404;
-  res.end("Not found");
-});
+    res.statusCode = 404;
+    res.end("Not found");
+  });
+}
 
-const port = Number(process.env.PORT || 3000);
-server.listen(port, () => {
-  console.log(`spapi-metadata-watcher running at http://localhost:${port}`);
-});
+if (require.main === module) {
+  const server = createServer();
+  const port = Number(process.env.PORT || 3000);
+  server.listen(port, () => {
+    console.log(`spapi-metadata-watcher running at http://localhost:${port}`);
+  });
+}
+
+module.exports = {
+  createServer
+};
