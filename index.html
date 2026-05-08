@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPAPI Metadata Watcher</title>
+    <meta
+      name="description"
+      content="Track Amazon SP-API metadata updates, filter by marketplace and product type, and preview webhook deliveries."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="/">SPAPI Metadata Watcher</a>
+        <nav class="topnav">
+          <a href="#product">Product</a>
+          <a href="#api">API</a>
+          <a href="/docs">Docs</a>
+          <a href="#demo">Demo</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow">Amazon developer infrastructure</span>
+            <h1>Track SP-API metadata updates before they break your integration.</h1>
+            <p class="hero-text">
+              We monitor Amazon product metadata releases, normalize marketplace and
+              product type changes, and expose them through a clean query API and
+              webhook-ready payloads.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#demo">View live demo</a>
+              <a class="button button-secondary" href="/docs">Read the docs</a>
+            </div>
+            <ul class="hero-points">
+              <li>Release summaries from the latest metadata spreadsheet</li>
+              <li>Filter by marketplace, product type, and status</li>
+              <li>Webhook payloads you can inspect before wiring up delivery</li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" id="product">
+            <div class="visual-window">
+              <div class="window-header">
+                <span class="window-label">release feed</span>
+                <span class="window-dot"></span>
+              </div>
+              <div class="release-grid">
+                <article class="release-card emphasis">
+                  <span class="mini-label">latest release</span>
+                  <strong id="releaseMonth">2026-05</strong>
+                  <p id="releaseStats">Loading release summary...</p>
+                </article>
+                <article class="release-card">
+                  <span class="mini-label">focus filters</span>
+                  <strong>US, SG, JP</strong>
+                  <p>COFFEE, MILK_SUBSTITUTE, ANKLE_PAD</p>
+                </article>
+                <article class="release-card">
+                  <span class="mini-label">delivery mode</span>
+                  <strong>Webhook + Query API</strong>
+                  <p>Designed for internal automation and tooling teams.</p>
+                </article>
+              </div>
+              <div class="payload-panel">
+                <div class="payload-header">
+                  <span>sample delivery</span>
+                  <span class="pill">POST</span>
+                </div>
+                <pre id="heroPayload" class="code-block code-compact">Loading payload preview...</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section metrics">
+          <div class="section-heading">
+            <span class="eyebrow">What developers actually need</span>
+            <h2>Less spreadsheet archaeology. More direct answers.</h2>
+          </div>
+          <div class="showcase-image">
+            <img
+              src="/assets/hero-dashboard.svg"
+              alt="A branded preview of the SPAPI Metadata Watcher dashboard and webhook payload layout."
+            />
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <strong>Watch releases</strong>
+              <p>Capture release month, source file, marketplace coverage, and update counts.</p>
+            </article>
+            <article class="metric-card">
+              <strong>Normalize changes</strong>
+              <p>Convert rows into records your systems can query and compare without scraping HTML.</p>
+            </article>
+            <article class="metric-card">
+              <strong>Preview payloads</strong>
+              <p>See exactly what a future webhook event looks like before building receivers.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section split" id="api">
+          <div class="section-heading narrow">
+            <span class="eyebrow">API-first onboarding</span>
+            <h2>One consistent surface for release summaries, filtered updates, and webhook setup.</h2>
+          </div>
+          <div class="split-layout">
+            <div class="code-tabs">
+              <div class="tab-row">
+                <button class="tab-button is-active" data-tab="curl">curl</button>
+                <button class="tab-button" data-tab="node">Node</button>
+                <button class="tab-button" data-tab="python">Python</button>
+                <button class="tab-button" data-tab="go">Go</button>
+              </div>
+              <pre class="code-block" id="codeSample"></pre>
+            </div>
+            <div class="endpoint-list">
+              <article class="endpoint-card">
+                <span class="pill">GET</span>
+                <strong>/api/v1/releases/latest</strong>
+                <p>Latest release summary with status counts and marketplace coverage.</p>
+              </article>
+              <article class="endpoint-card">
+                <span class="pill">GET</span>
+                <strong>/api/v1/updates</strong>
+                <p>Filter normalized changes by marketplace, product type, and status.</p>
+              </article>
+              <article class="endpoint-card">
+                <span class="pill">POST</span>
+                <strong>/api/v1/subscriptions</strong>
+                <p>Create a webhook subscription request payload.</p>
+              </article>
+              <article class="endpoint-card">
+                <span class="pill">POST</span>
+                <strong>/api/v1/subscriptions/test</strong>
+                <p>Preview a delivery event without waiting for a live update.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section surface" id="demo">
+          <div class="section-heading narrow">
+            <span class="eyebrow">Live demo data</span>
+            <h2>Real-style marketplace and product type changes, already normalized.</h2>
+          </div>
+          <div class="surface-layout">
+            <div class="surface-panel">
+              <div class="panel-topline">
+                <strong>Latest updates</strong>
+                <span>GET /api/v1/updates/latest?limit=5</span>
+              </div>
+              <div id="demoTable" class="table-shell"></div>
+            </div>
+            <div class="surface-panel">
+              <div class="panel-topline">
+                <strong>Webhook delivery preview</strong>
+                <span>POST /api/v1/subscriptions/test</span>
+              </div>
+              <pre id="demoPayload" class="code-block code-tall">Loading payload preview...</pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section footer-cta">
+          <div class="cta-card">
+            <div>
+              <span class="eyebrow">Open-source starter</span>
+              <h2>Designed for teams that want a clean base before adding crawling, persistence, and retries.</h2>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/docs">See documentation</a>
+              <a class="button button-secondary" href="/openapi.json">OpenAPI JSON</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
