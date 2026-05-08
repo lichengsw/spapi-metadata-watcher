@@ -1,0 +1,13 @@
+{
+  "name": "spapi-metadata-watcher",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Developer-first website and API prototype for tracking Amazon SP-API metadata updates.",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
