@@ -1,0 +1,67 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1319" />
+      <stop offset="1" stop-color="#1A2023" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1040 94) rotate(90) scale(310 420)">
+      <stop stop-color="#FF7A1A" stop-opacity="0.72" />
+      <stop offset="1" stop-color="#FF7A1A" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)" />
+  <rect width="1600" height="980" fill="url(#glow)" />
+  <rect x="72" y="88" width="1456" height="812" rx="34" fill="#121923" stroke="#2A3645" stroke-width="2" />
+  <rect x="100" y="118" width="1400" height="50" rx="20" fill="#0D131B" />
+  <text x="130" y="144" fill="#F5F0E6" font-size="18" font-family="Segoe UI, Arial, sans-serif">SPAPI Metadata Watcher</text>
+  <text x="1205" y="144" fill="#FF8C39" font-size="18" font-family="Segoe UI, Arial, sans-serif">webhook + query api</text>
+
+  <rect x="110" y="210" width="420" height="156" rx="24" fill="#F7F3EA" />
+  <text x="136" y="242" fill="#7B8795" font-size="18" font-family="Segoe UI, Arial, sans-serif">LATEST RELEASE</text>
+  <text x="136" y="286" fill="#111317" font-size="34" font-family="Segoe UI, Arial, sans-serif">2026-05</text>
+  <text x="136" y="324" fill="#5A6470" font-size="18" font-family="Segoe UI, Arial, sans-serif">23 marketplaces  |  1,804 product types</text>
+
+  <rect x="110" y="390" width="420" height="156" rx="24" fill="#1B2634" />
+  <text x="136" y="422" fill="#9AA5B3" font-size="18" font-family="Segoe UI, Arial, sans-serif">FOCUS FILTERS</text>
+  <text x="136" y="466" fill="#F5F0E6" font-size="34" font-family="Segoe UI, Arial, sans-serif">US, SG, JP</text>
+  <text x="136" y="504" fill="#A9B4C1" font-size="18" font-family="Segoe UI, Arial, sans-serif">COFFEE  |  MILK_SUBSTITUTE  |  ANKLE_PAD</text>
+
+  <rect x="110" y="570" width="420" height="156" rx="24" fill="#1B2634" />
+  <text x="136" y="602" fill="#9AA5B3" font-size="18" font-family="Segoe UI, Arial, sans-serif">DELIVERY MODE</text>
+  <text x="136" y="646" fill="#F5F0E6" font-size="34" font-family="Segoe UI, Arial, sans-serif">Webhook + Query API</text>
+  <text x="136" y="684" fill="#A9B4C1" font-size="18" font-family="Segoe UI, Arial, sans-serif">Preview first, wire receivers second</text>
+
+  <rect x="570" y="210" width="918" height="516" rx="26" fill="#0D1117" stroke="#202B36" stroke-width="2" />
+  <text x="606" y="248" fill="#F5F0E6" font-size="22" font-family="Segoe UI, Arial, sans-serif">POST /subscriptions/test</text>
+  <g fill="#D7E1EF" font-size="20" font-family="Consolas, Menlo, monospace">
+    <text x="620" y="306">{</text>
+    <text x="620" y="352">  "eventType": "product_metadata.updated",</text>
+    <text x="620" y="398">  "release": { "month": "2026-05" },</text>
+    <text x="620" y="444">  "data": {</text>
+    <text x="620" y="490">    "marketplace": "US",</text>
+    <text x="620" y="536">    "productType": "COFFEE",</text>
+    <text x="620" y="582">    "status": "Upcoming",</text>
+    <text x="620" y="628">    "changes": [ { "attribute": "Branded Coffee Machine Insert Type" } ]</text>
+    <text x="620" y="674">  }</text>
+    <text x="620" y="720">}</text>
+  </g>
+
+  <rect x="110" y="758" width="1378" height="102" rx="22" fill="#F7F3EA" />
+  <g fill="#6E7682" font-size="18" font-family="Segoe UI, Arial, sans-serif">
+    <text x="146" y="796">MP</text>
+    <text x="250" y="796">PRODUCT TYPE</text>
+    <text x="590" y="796">ATTRIBUTE</text>
+    <text x="1280" y="796">STATUS</text>
+  </g>
+  <g fill="#101217" font-size="20" font-family="Segoe UI, Arial, sans-serif">
+    <text x="146" y="835">US</text>
+    <text x="250" y="835">COFFEE</text>
+    <text x="590" y="835">Branded Coffee Machine Insert Type</text>
+    <text x="1280" y="835">Upcoming</text>
+    <text x="146" y="864">SG</text>
+    <text x="250" y="864">COFFEE</text>
+    <text x="590" y="864">Branded Coffee Machine Insert Type</text>
+    <text x="1280" y="864">Upcoming</text>
+  </g>
+</svg>
