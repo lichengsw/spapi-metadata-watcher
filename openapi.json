@@ -1,0 +1,65 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SPAPI Metadata Watcher API",
+    "version": "0.1.0",
+    "description": "Prototype API for tracking Amazon SP-API metadata updates."
+  },
+  "servers": [
+    {
+      "url": "https://your-domain.vercel.app"
+    }
+  ],
+  "paths": {
+    "/api/v1/releases/latest": {
+      "get": {
+        "summary": "Get the latest release summary"
+      }
+    },
+    "/api/v1/updates": {
+      "get": {
+        "summary": "Query normalized metadata updates",
+        "parameters": [
+          {
+            "name": "marketplace",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/subscriptions": {
+      "post": {
+        "summary": "Create a webhook subscription"
+      }
+    },
+    "/api/v1/subscriptions/test": {
+      "post": {
+        "summary": "Preview a webhook delivery payload"
+      }
+    }
+  }
+}
