@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPAPI Metadata Watcher Docs</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="docs-body">
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="/">SPAPI Metadata Watcher</a>
+        <nav class="topnav">
+          <a href="/">Home</a>
+          <a href="/openapi.json">OpenAPI</a>
+        </nav>
+      </header>
+
+      <main class="docs-main">
+        <section class="section-heading narrow">
+          <span class="eyebrow">Documentation</span>
+          <h1>Fast path for query API and webhook integration.</h1>
+          <p class="hero-text">
+            This prototype focuses on the first ten minutes of a developer
+            integration: understand the release model, fetch filtered changes, and
+            preview delivery payloads.
+          </p>
+        </section>
+
+        <section class="docs-grid">
+          <article class="docs-card">
+            <span class="pill">1</span>
+            <h2>Get the latest release</h2>
+            <pre class="code-block">curl https://your-domain.vercel.app/api/v1/releases/latest</pre>
+          </article>
+          <article class="docs-card">
+            <span class="pill">2</span>
+            <h2>Filter updates</h2>
+            <pre class="code-block">curl "https://your-domain.vercel.app/api/v1/updates?marketplace=SG&amp;productType=COFFEE"</pre>
+          </article>
+          <article class="docs-card">
+            <span class="pill">3</span>
+            <h2>Create a subscription</h2>
+            <pre class="code-block">curl -X POST https://your-domain.vercel.app/api/v1/subscriptions \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.com/webhooks/spapi","marketplaces":["US","SG"]}'</pre>
+          </article>
+          <article class="docs-card">
+            <span class="pill">4</span>
+            <h2>Preview a test delivery</h2>
+            <pre class="code-block">curl -X POST https://your-domain.vercel.app/api/v1/subscriptions/test \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.com/webhooks/spapi"}'</pre>
+          </article>
+        </section>
+
+        <section class="section surface">
+          <div class="section-heading narrow">
+            <span class="eyebrow">Payload shape</span>
+            <h2>Webhook events are structured for ingestion, not screenshots.</h2>
+          </div>
+          <pre id="docsPayload" class="code-block code-tall">Loading payload preview...</pre>
+        </section>
+      </main>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
